@@ -1,7 +1,11 @@
 version: '3'
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      tags:
+        - reyhanacynthia/yolo-backend:1.0.1
     container_name: yolo-backend
     ports:
       - "5001:5000"
@@ -13,7 +17,11 @@ services:
     tty: true
 
   client:
-    build: ./client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      tags:
+        - reyhanacynthia/yolo-client:1.0.1
     container_name: yolo-client
     ports:
       - "3000:3000"
