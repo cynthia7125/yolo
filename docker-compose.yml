@@ -1,0 +1,42 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    container_name: yolo-backend
+    ports:
+      - "5001:5000"
+    depends_on:
+      - "mongodb"
+    networks:
+      - yolo-network
+    stdin_open: true
+    tty: true
+
+  client:
+    build: ./client
+    container_name: yolo-client
+    ports:
+      - "3000:3000"
+    links:
+      - "backend"
+    networks:
+      - yolo-network
+    stdin_open: true
+    tty: true
+  
+  mongodb:
+    image: mongo:4.4
+    container_name: yolo-mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - yolo-network
+    # command: mongod --bind_ip_all --auth 
+
+volumes:
+  mongodb_data:
+
+networks:
+  yolo-network:

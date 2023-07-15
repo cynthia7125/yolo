@@ -1,4 +1,4 @@
-FROM node:13.12.0
+FROM node:13-alpine
 
 WORKDIR /backend
 
@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY .  .
+COPY . .
 
 EXPOSE 5000
 
