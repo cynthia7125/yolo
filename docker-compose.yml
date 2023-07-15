@@ -41,7 +41,6 @@ services:
       - "27017:27017"
     networks:
       - yolo-network
-    # command: mongod --bind_ip_all --auth 
 
 volumes:
   mongodb_data:
