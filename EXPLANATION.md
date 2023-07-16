@@ -81,8 +81,9 @@ services:
 
 networks:
   yolo-network:
+    driver: bridge
 ```
-In this configuration, the backend container is mapped to port 5001 of the host, the client container is mapped to port 3000 of the host, and mongodb container is mapped to port 27017 of the host. All containers are connected to the yolo-network network.
+In this configuration, the backend container is mapped to port 5001 of the host, the client container is mapped to port 3000 of the host, and mongodb container is mapped to port 27017 of the host. All containers are connected to the yolo-network bridge network.
 
 ## Docker Compose Volume Definition and Usage
 The Docker Compose file includes volume definitions for MongoDB data storage. The relevant section is as follows:
@@ -108,5 +109,12 @@ To achieve the task, the following Git workflow was used:
 8. Built the backend and client images: ```docker-compose build```
 9. Pushed the built images to a Docker registry: ```docker-compose push```
 10. Deployed the containers using Docker Compose: ```docker-compose up```
+
+After the tenth step commits kept on happening for instances such as creating the explanation.md file and any other updates as the commit messages in the repository will explain. Commits stopped at some point when fixing the issue with ports which lead to using port 5001 to map the backend for the project to run successfully.
+
+## Run containerized project
+To run yolo on docker you will need to run this command:
+
+    sudo docker-compose up
 
 
