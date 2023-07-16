@@ -116,7 +116,7 @@ To achieve the task, the following Git workflow was used:
 
 After the tenth step commits kept on happening for instances such as creating the explanation.md file and any other updates as the commit messages in the repository will explain. Commits stopped at some point when fixing the issue with ports which lead to using port 5001 to map the backend for the project to run successfully.
 
-## Run Containerized Project
+## Run Containerized Yolo Project
 To run yolo on docker you will need to run this command in the root directory:
 
   `sudo docker-compose up`
