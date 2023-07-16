@@ -4,18 +4,19 @@ This document provides an overview of the Docker configuration for the YOLO proj
 ## Choice of Base Images
 For the YOLO project, the following base images were chosen for each container:
 
-Backend: node:13-alpine
+- Backend: `node:13-alpine`
 
-Client: node:13-alpine
+- Client: `node:13-alpine`
 
-MongoDB: mongo:4.4
+- MongoDB: `mongo:4.4`
 
-The node:13-alpine image provides a lightweight base image for running Node.js applications, while the mongo image provides a pre-built image for running MongoDB.
+The `node:13-alpine` image provides a lightweight base image for running Node.js applications, while the mongo image provides a pre-built image for running MongoDB.
 
 ## Dockerfile Directives
 Both the backend and client containers have their respective Dockerfiles. The Dockerfile directives used in the creation and running of each container are as follows:
 
 ### Backend Container
+
 ```
 FROM node:13-alpine
 
@@ -31,6 +32,7 @@ EXPOSE 5000
 
 CMD ["npm", "start"]
 ```
+
 The backend Dockerfile starts from the node:13-alpine base image, sets the working directory, copies the package.json and package-lock.json files, installs the dependencies, copies the rest of the application code, exposes port 5000, and starts the backend server.
 
 ### Client Container
@@ -110,11 +112,13 @@ To achieve the task, the following Git workflow was used:
 9. Pushed the built images to a Docker registry: ```docker-compose push```
 10. Deployed the containers using Docker Compose: ```docker-compose up```
 
+  &nbsp;
+
 After the tenth step commits kept on happening for instances such as creating the explanation.md file and any other updates as the commit messages in the repository will explain. Commits stopped at some point when fixing the issue with ports which lead to using port 5001 to map the backend for the project to run successfully.
 
-## Run containerized project
-To run yolo on docker you will need to run this command:
+## Run Containerized Project
+To run yolo on docker you will need to run this command in the root directory:
 
-    sudo docker-compose up
+  `sudo docker-compose up`
 
-
+Open the links that pop up and try to add a product.
