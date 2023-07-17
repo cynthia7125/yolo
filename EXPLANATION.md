@@ -117,7 +117,7 @@ To achieve the task, the following Git workflow was used:
 After the tenth step commits kept on happening for instances such as creating the explanation.md file and any other updates as the commit messages in the repository will explain. Commits stopped at some point when fixing the issue with ports which lead to using port 5001 to map the backend for the project to run successfully.
 
 
-## images Used on the yml file
+## Images Used on the yml file
 Here are the links to the dockerhub images I pushed for this project:
 - [Backend](https://hub.docker.com/repository/docker/reyhanacynthia/yolo-backend/general)
 - [Client](https://hub.docker.com/repository/docker/reyhanacynthia/yolo-client/general)
