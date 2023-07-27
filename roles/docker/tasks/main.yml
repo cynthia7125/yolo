@@ -1,0 +1,25 @@
+---
+- block:
+    - name: Update package lists
+      apt:
+        update_cache: yes
+      tags:
+        - docker
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+      tags:
+        - docker
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+      tags:
+        - docker
+  rescue:
+    - name: Handle Docker installation errors
+      debug:
+        msg: "Error occurred while installing Docker."

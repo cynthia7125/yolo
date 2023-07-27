@@ -6,29 +6,6 @@
   vars:
     chdir: "{{ playbook_dir }}/yolo"
 
-  tasks:
-    - name: Check if yolo web application is already cloned
-      stat:
-        path: "{{ chdir }}"
-      register: yolo_repo_status
-
-    - name: Clone yolo web application from GitHub
-      git:
-        repo: https://github.com/cynthia7125/yolo
-        dest: "{{ chdir }}"
-      when: not yolo_repo_status.stat.exists
-    
-    - name: Update package lists
-      apt:
-        update_cache: yes
-
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
-    
-    - name: Install Docker Compose
-      apt:
-        name: docker-compose
-        state: present
-
+  roles:
+    - frontend
+    - docker
