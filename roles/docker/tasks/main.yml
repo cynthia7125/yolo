@@ -6,6 +6,13 @@
       tags:
         - docker
 
+    - name: Install python
+      apt:
+        name: python3-pip
+        state: present
+      tags:
+        - docker
+
     - name: Install Docker
       apt:
         name: docker.io
@@ -13,12 +20,20 @@
       tags:
         - docker
 
-    - name: Install Docker Compose
-      apt:
+    - name: Install Docker Compose using pip
+      pip:
         name: docker-compose
-        state: present
-      tags:
-        - docker
+        executable: pip3
+        state: latest
+      become: true
+
+    - name: Run docker-compose up
+      command: docker-compose up -d
+      args:
+        chdir: /vagrant
+      tags: 
+        - docker-compose
+      
   rescue:
     - name: Handle Docker installation errors
       debug:

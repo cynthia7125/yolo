@@ -1,11 +1,8 @@
-version: '3'
+version: '3.8'
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      tags:
-        - reyhanacynthia/yolo-backend:1.0.1
+    build: ./backend
+    image: reyhanacynthia/yolo-backend:v1.0.1
     container_name: yolo-backend
     ports:
       - "5001:5000"
@@ -17,11 +14,8 @@ services:
     tty: true
 
   client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-      tags:
-        - reyhanacynthia/yolo-client:1.0.1
+    build: ./client
+    image: reyhanacynthia/yolo-client:v1.0.1
     container_name: yolo-client
     ports:
       - "3000:3000"
@@ -37,8 +31,8 @@ services:
     container_name: yolo-mongodb
     volumes:
       - mongodb_data:/data/db
-    ports:
-      - "27017:27017"
+    # ports:
+    #   - "27017:27017"
     networks:
       - yolo-network
 

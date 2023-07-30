@@ -1,13 +1,16 @@
 ---
-- name: Check if yolo web application is already cloned
-  stat:
-    path: "{{ chdir }}"
-  register: yolo_repo_status
+- block:
+  - name: Check if yolo web application is already cloned
+    stat:
+      path: "{{ chdir }}"
+    register: yolo_repo_status
+    tags:
+      - frontent
 
-- name: Clone yolo web application from GitHub
-  git:
-    repo: https://github.com/cynthia7125/yolo
-    dest: "{{ chdir }}"
-  when: not yolo_repo_status.stat.exists
-  tags:
-    - clone
+  - name: Clone yolo web application from GitHub
+    git:
+      repo: https://github.com/cynthia7125/yolo
+      dest: "{{ chdir }}"
+    when: not yolo_repo_status.stat.exists
+    tags:
+      - frontent
