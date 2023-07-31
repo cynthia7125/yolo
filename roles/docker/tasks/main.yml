@@ -26,6 +26,8 @@
         executable: pip3
         state: latest
       become: true
+      tags: 
+        - docker-compose
 
     - name: Run docker-compose up
       command: docker-compose up -d
@@ -34,6 +36,13 @@
       tags: 
         - docker-compose
       
+    - name: Wait for the application to be ready
+      wait_for:
+        host: localhost
+        port: 3000
+        state: started
+        timeout: 120
+
   rescue:
     - name: Handle Docker installation errors
       debug:
