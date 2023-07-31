@@ -5,7 +5,7 @@
       path: "{{ chdir }}"
     register: yolo_repo_status
     tags:
-      - frontent
+      - frontend
 
   - name: Clone yolo web application from GitHub
     git:
@@ -13,4 +13,4 @@
       dest: "{{ chdir }}"
     when: not yolo_repo_status.stat.exists
     tags:
-      - frontent
+      - frontend
