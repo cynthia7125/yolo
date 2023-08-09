@@ -13,7 +13,7 @@ spec:
         app: backend
     spec:
       containers:
-        - name: backend
+        - name: yolo-backend
           image: reyhanacynthia/yolo-backend:v1.0.1
           ports:
             - containerPort: 5000
