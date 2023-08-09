@@ -1,0 +1,5 @@
+# Ignore gcloud configuration and cache files
+.config/
+.gcloud/
+
+/google-cloud-sdk
