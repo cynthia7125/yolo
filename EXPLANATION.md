@@ -238,3 +238,34 @@ These tasks ensure that the frontend application (YOLO web application) is avail
 The order of execution in the playbook starts with setting up the frontend application by checking if the YOLO web application is already cloned. If not, it will be cloned from the GitHub repository. Afterward, the Docker-related tasks will be executed to install and configure Docker and Docker Compose on the target hosts. The Ansible roles are executed sequentially to achieve the desired configuration for the YOLO project.
 
 
+
+# Kubernetes Deployment and Infrastructure Overview
+
+In my project, I made specific choices regarding the Kubernetes objects used for deployment, how I exposed pods to internet traffic, and my use of persistent storage. Here's a breakdown of these decisions:
+
+## Choice of Kubernetes Objects
+
+I used various Kubernetes objects to manage deployment and storage effectively:
+
+- **StatefulSet for Client**: Utilized a StatefulSet named `client-deployment` to maintain state for the client application. This ensured each pod's unique identity and consistent storage.
+
+- **Deployment for Backend**: Employed a Deployment named `backend-deployment` for the backend service. This facilitated easy scaling and updates without worrying about stateful data.
+
+- **Ingress for External Access**: Implemented an Ingress named `basic-ingress` to control external access to my services. This enabled me to route traffic based on paths, directing to either the client or backend service.
+
+- **StatefulSet for MongoDB**: Used a StatefulSet named `mongodb` for the MongoDB database. This choice ensured data consistency and persistence across pod rescheduling.
+
+## Exposing Pods to Internet Traffic
+
+- **LoadBalancer Services**: Configured a LoadBalancer service for both the client and backend. This enabled distributing internet traffic evenly among replicas and provided high availability.
+
+## Use of Persistent Storage
+
+- **Persistent Volumes and Claims**: Incorporated Persistent Volumes and Claims for MongoDB. This approach ensured consistent storage across pod restarts and rescheduling.
+
+- **Dynamic Provisioning**: Employed dynamic provisioning with a StorageClass, which automatically created and managed storage resources as needed.
+
+## Conclusion
+
+In summary, my deployment strategy revolved around utilizing appropriate Kubernetes objects to match the needs of each service. I ensured that both the client and backend were accessible via LoadBalancer services, and I implemented persistent storage solutions, such as StatefulSets and Persistent Volumes, to maintain data integrity and availability. This approach resulted in a robust and scalable infrastructure for my project.
+
