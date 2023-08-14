@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   backend:
     build: ./backend
@@ -25,14 +25,14 @@ services:
       - yolo-network
     stdin_open: true
     tty: true
-  
-  mongodb:
-    image: mongo:4.4
+
+  mongodb-service:
+    image: mongo
     container_name: yolo-mongodb
     volumes:
       - mongodb_data:/data/db
-    # ports:
-    #   - "27017:27017"
+    ports:
+      - "27017:27017"
     networks:
       - yolo-network
 
