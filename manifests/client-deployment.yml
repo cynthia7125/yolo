@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: client-deployment
+  labels:
+    app: client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: yolo-client
+          image: reyhanacynthia/yolo-client:v1.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env: 
+            - name: BACKEND_HOST
+              value: backend  
+            - name: BACKEND_PORT
+              value: "5000"
+          resources:
+            requests:
+              cpu: "100m"  
+              memory: "256Mi"  
+            limits:
+              cpu: "200m"  
+              memory: "512Mi"  
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+spec:
+  ports:
+    - name: client
+      targetPort: 3000
+      port: 3000
+      protocol: TCP
+  selector:
+    app: client
+  type: LoadBalancer
